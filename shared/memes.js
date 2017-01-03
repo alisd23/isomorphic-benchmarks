@@ -1,17 +1,14 @@
 export default [
   {
     name: 'Pepe',
-    id: 1,
-    image: require('assets/images/pepe.jpg')
+    id: 1
   },
   {
     name: 'Dat Boi',
-    id: 2,
-    image: require('assets/images/dat-boi.gif')
+    id: 2
   },
   {
     name: 'Doge',
-    id: 3,
-    image: require('assets/images/doge.jpg')
+    id: 3
   }
 ];

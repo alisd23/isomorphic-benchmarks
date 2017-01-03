@@ -53,12 +53,12 @@
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-standard": "^2.0.1",
     "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
     "nodemon": "^1.11.0",
     "npm-run-all": "^3.1.1",
     "promise": "^7.1.1",
     "rimraf": "^2.5.4",
     "universal-webpack": "^0.1.40",
+    "url-loader": "^0.5.7",
     "webpack": "beta",
     "webpack-dev-server": "beta",
     "webpack-node-externals": "^1.5.4"
