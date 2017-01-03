@@ -38,7 +38,7 @@ export default (params) => {
     let html;
 
     if (_ISOMORPHIC_) {
-      getData((memes) => {
+      getData(() => {
         const requestTime = req.query.timestamp;
         const markup = renderToString(
           <App memes={memes} />

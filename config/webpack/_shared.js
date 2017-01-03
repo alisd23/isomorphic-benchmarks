@@ -44,6 +44,7 @@ export default ({ server, env }) => ({
       'process.env.NODE_ENV': `"${env}"`,
       '_ISOMORPHIC_': process.env.ISOMORPHIC,
       '_SPLIT_': process.env.SPLIT,
+      '_BUNDLE_SIZE_': process.env.BUNDLE_SIZE || 0,
       '_SERVER_': !!server,
       '_CLIENT_': !server
     })
