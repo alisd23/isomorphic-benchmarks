@@ -15,7 +15,9 @@
     "react/prop-types": [0]
   },
   "globals": {
+    "fetch": true,
     "_MOBILE_": true,
+    "_ISOMORPHIC_": true,
     "_SPLIT_": true,
     "_SERVER_": true,
     "_CLIENT_": true

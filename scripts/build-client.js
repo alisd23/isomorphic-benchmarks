@@ -1,10 +1,17 @@
+import prodConfig from '../config/webpack/prod.client';
 import devConfig from '../config/webpack/dev.client';
 import options from './options';
-import { watcher } from './utils/webpack';
+import { watcher, builder } from './utils/webpack';
+
+const config = options.dev ? devConfig : prodConfig;
 
 const params = {
   name: 'Client',
   options
 };
 
-watcher(devConfig, params);
+if (options.dev) {
+  watcher(config, params);
+} else {
+  builder(config, params);
+}

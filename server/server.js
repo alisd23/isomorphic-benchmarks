@@ -1,11 +1,15 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import express from 'express';
-import { RouterContext, match } from 'react-router';
 import paths from 'config/paths';
 import ports from 'config/ports';
-import routes from 'shared/routes';
+import App from 'shared/components/App';
+import memes from 'shared/memes';
 import initialHtml from 'server/initial-html';
+
+const API_DELAY = 150;
+
+const getData = (cb) => setTimeout(cb, API_DELAY);
 
 export default (params) => {
   const app = express();
@@ -13,29 +17,39 @@ export default (params) => {
   // Server static files (js, images)
   app.use(express.static(paths.build));
 
+  app.get('/memes', (req, res) => {
+    getData(() => res.status(200).send(memes));
+  });
+
+  app.get('/test', (req, res) => {
+    const initialHTML = `
+      <html>
+        <head></head>
+        <body>
+          <script>window.location='/?timestamp=' + Date.now()</script>
+        </body>
+      </html>
+    `;
+    res.send(initialHTML);
+  });
+
   // All page requests are handled in one function
   app.get('*', (req, res) => {
-    match(
-      { routes, location: req.url },
-      (error, redirectLocation, renderProps) => {
-        if (error) {
-          res.status(500).send(error.message);
-        } else if (redirectLocation) {
-          res.redirect(302, redirectLocation.pathname + redirectLocation.search);
-        } else if (renderProps) {
-          // Render our app to a HTML string
-          const reactMarkup = renderToString(
-            <RouterContext {...renderProps} />
-          );
-          // Create a full HTML page, including script links
-          const html = initialHtml(reactMarkup, params.chunks());
-          // Send to the client
-          res.status(200).send(html);
-        } else {
-          res.status(404).send('Not found');
-        }
-      }
-    );
+    let html;
+
+    if (_ISOMORPHIC_) {
+      getData((memes) => {
+        const requestTime = req.query.timestamp;
+        const markup = renderToString(
+          <App memes={memes} />
+        );
+        html = initialHtml(markup, params.chunks(), memes, true, requestTime);
+        res.status(200).send(html);
+      });
+    } else {
+      html = initialHtml('', params.chunks());
+      res.status(200).send(html);
+    }
   });
 
   // Start server

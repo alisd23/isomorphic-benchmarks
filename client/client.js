@@ -1,20 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, match, browserHistory as history } from 'react-router';
-import routes from 'shared/routes';
+import queryString from 'query-string';
+import App from 'shared/components/App';
 
-// Match current location against routes
-// Find which component(s) to render
-match(
-  { history, routes },
-  (error, redirectLocation, renderProps) => {
-    // Start client rendering
-    // React checksum should match - avoiding the need for any DOM updates
-    ReactDOM.render(
-      <Router {...renderProps}>
-        {routes}
-      </Router>,
-      document.getElementById('root')
-    );
-  }
-);
+const render = (memes, ...args) => {
+  ReactDOM.render(
+    <App memes={memes} />,
+    document.getElementById('root'),
+    ...args
+  );
+};
+
+const requestTime = queryString.parse(window.location.search).timestamp;
+
+if (_ISOMORPHIC_) {
+  render(
+    window._INITIAL_STATE_,
+    console.log(
+      '[ISOMORPHIC] Rendered on client -',
+      (Date.now() - requestTime) + 'ms'
+    )
+  );
+} else {
+  fetch('/memes')
+    .then(res => res.json())
+    .then(memes => render(
+      memes,
+      console.log(
+        '[CLIENT] First paint -',
+        (Date.now() - requestTime) + 'ms'
+      )
+    ));
+}

@@ -1,7 +1,6 @@
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
-import fs from 'fs';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import paths from '../paths';
 
 export default ({ server, env }) => ({
@@ -30,23 +29,20 @@ export default ({ server, env }) => ({
       },
       {
         test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)(\?.*)?$/,
-        loader: 'file-loader',
-        query: {
-          name: 'assets/[name].[ext]'
-        }
+        loader: 'url-loader'
       }
     ]
   },
   plugins: [
     new CopyWebpackPlugin([
       {
-        from: 'assets',
-        to: 'assets'
+        from: 'assets/favicon.ico',
+        to: 'assets/favicon.ico'
       }
     ]),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': `"${env}"`,
-      '_MOBILE_': process.env.MOBILE,
+      '_ISOMORPHIC_': process.env.ISOMORPHIC,
       '_SPLIT_': process.env.SPLIT,
       '_SERVER_': !!server,
       '_CLIENT_': !server
