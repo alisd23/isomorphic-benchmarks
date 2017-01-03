@@ -29,7 +29,10 @@ export default ({ server, env }) => ({
       },
       {
         test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)(\?.*)?$/,
-        loader: 'url-loader'
+        loader: 'file-loader',
+        query: {
+          name: 'assets/[name].[ext]'
+        }
       }
     ]
   },
