@@ -21,6 +21,16 @@ export default (markup, assets, state, isIsomorphic, requestTime) => `
     </head>
     <body>
       <div id="root">${markup}</div>
+      <div id="fillers">
+        ${
+          _ISOMORPHIC_
+            ? Array(_BUNDLE_SIZE_)
+              .fill(null)
+              .map(() => `<img src=${require('assets/images/doge.jpg')} />`)
+              .join('')
+            : ''
+        }
+      </div>
     </body>
     ${
       state

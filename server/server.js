@@ -18,6 +18,9 @@ export default (params) => {
   app.use(express.static(paths.build));
 
   app.get('/memes', (req, res) => {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Expires', '-1');
+    res.header('Pragma', 'no-cache');
     getData(() => res.status(200).send(memes));
   });
 

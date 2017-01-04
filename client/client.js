@@ -33,24 +33,21 @@ if (_ISOMORPHIC_) {
     ));
 }
 
-if (_BUNDLE_SIZE_ === 1 || _BUNDLE_SIZE_ === 2 || _BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 1 || _BUNDLE_SIZE_ === 2 || _BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_1.jpg');
 }
-if (_BUNDLE_SIZE_ === 2 || _BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 2 || _BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_2.jpg');
 }
-if (_BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 3 || _BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_3.jpg');
 }
-if (_BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 4 || _BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_4.jpg');
 }
-if (_BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 5 || _BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_5.jpg');
 }
-if (_BUNDLE_SIZE_ === 6 || _BUNDLE_SIZE_ === 7) {
+if (_BUNDLE_SIZE_ === 6) {
   require('assets/images/space_filler_6.jpg');
-}
-if (_BUNDLE_SIZE_ === 7) {
-  require('assets/images/space_filler_7.jpg');
 }
